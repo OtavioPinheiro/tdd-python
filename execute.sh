@@ -1,0 +1,1 @@
+python -m unittest src/leilao/test_avaliador.py
