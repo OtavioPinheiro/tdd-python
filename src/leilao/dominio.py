@@ -5,7 +5,7 @@ class Usuario:
         self.__carteira = carteira
     
     def propoe_lance(self, leilao, valor):
-        if self._valor_valido(valor):
+        if not self._valor_valido(valor):
             raise ValueError('Saldo insuficiente')
 
         lance = Lance(self, valor)
@@ -22,7 +22,7 @@ class Usuario:
         return self.__carteira
     
     def _valor_valido(self, valor):
-        return valor > self.__carteira
+        return valor <= self.__carteira
 
 
 class Lance:
