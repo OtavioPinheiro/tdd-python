@@ -7,9 +7,12 @@ class Usuario:
         self.__carteira = carteira
     
     def propoe_lance(self, leilao, valor):
+        if valor > self.__carteira:
+            raise ValueError('Saldo insuficiente')
+
         lance = Lance(self, valor)
         leilao.propoe(lance)
-        
+
         self.__carteira -= valor
 
     @property
