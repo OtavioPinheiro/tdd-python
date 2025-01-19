@@ -1,1 +1,1 @@
-python -m unittest src/leilao/test_avaliador.py
+python -m unittest discover
