@@ -4,8 +4,9 @@ Curso da Alura ensinando a utilizar o unittest para escrever e executar testes u
 # Sumário
 1. [TDD](#tdd)
 2. [unittest](#unittest)
-3. [Fixtures](#fixtures-no-unittest)
+3. [Fixtures no unittest](#fixtures-no-unittest)
 4. [pytest](#pytest)
+5. [Fixtures no pytest](#fixtures-no-pytest)
 
 # TDD
 Test-Driven Development (TDD) é uma prática de desenvolvimento de software que consiste em escrever testes antes de implementar o código. O ciclo básico do TDD é composto por três etapas principais:
@@ -293,3 +294,5 @@ def test_numero(numero):
 5. **Parametrização**: Facilita a criação de cenários variados.
 
 Com sua flexibilidade e recursos avançados, o `pytest` é amplamente utilizado tanto para projetos pequenos quanto para aplicações corporativas complexas.
+
+[Sumário](#sumário)
