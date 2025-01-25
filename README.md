@@ -213,6 +213,128 @@ Rode o comando `pytest` no terminal para executar o teste.
 
 [Sumário](#sumário)
 
+# Arquivo de configuração
+
+O arquivo `pytest.ini` é um arquivo de configuração utilizado pelo `pytest` para personalizar e controlar o comportamento padrão dos testes em um projeto. Ele é especialmente útil para definir opções globais, ignorar warnings, configurar plugins e definir comportamentos específicos que serão aplicados em todas as execuções de teste no projeto.
+
+---
+
+### **Estrutura e Localização**
+
+O arquivo `pytest.ini` deve ser colocado no diretório raiz do projeto. O `pytest` procura esse arquivo (ou outros arquivos de configuração suportados, como `tox.ini` ou `pyproject.toml`) para carregar as configurações antes de executar os testes.
+
+---
+
+### **Exemplo Básico**
+
+Um arquivo `pytest.ini` típico pode se parecer com isto:
+
+```ini
+# pytest.ini
+[pytest]
+addopts = --maxfail=3 --tb=short
+testpaths = tests
+python_files = test_*.py
+python_classes = Test*
+python_functions = test_*
+markers =
+    slow: testes que são lentos
+    api: testes relacionados à API
+```
+
+---
+
+### **Principais Seções e Configurações**
+
+1. **`addopts`**  
+   - Adiciona opções de linha de comando padrão para o `pytest`.
+   - Exemplo:  
+     ```ini
+     addopts = --maxfail=3 --disable-warnings
+     ```
+     Isso configura o `pytest` para parar após 3 falhas e ignorar warnings.
+
+2. **`testpaths`**  
+   - Define os diretórios onde o `pytest` buscará por testes.
+   - Exemplo:  
+     ```ini
+     testpaths = tests integration_tests
+     ```
+
+3. **`python_files`**  
+   - Define o padrão de nomes de arquivos que o `pytest` reconhece como arquivos de teste.
+   - Padrão: `test_*.py` ou `*_test.py`.
+   - Exemplo:  
+     ```ini
+     python_files = test_*.py *_spec.py
+     ```
+
+4. **`python_classes`**  
+   - Define o padrão de nomes de classes que o `pytest` reconhece como classes de teste.
+   - Padrão: Classes que começam com `Test`.
+   - Exemplo:  
+     ```ini
+     python_classes = Test* Spec*
+     ```
+
+5. **`python_functions`**  
+   - Define o padrão de nomes de funções que o `pytest` reconhece como funções de teste.
+   - Padrão: Funções que começam com `test_`.
+   - Exemplo:  
+     ```ini
+     python_functions = test_* check_*
+     ```
+
+6. **`markers`**  
+   - Define marcadores personalizados para categorizar testes.
+   - Exemplo:  
+     ```ini
+     markers =
+         slow: testes que demoram muito tempo para serem executados
+         api: testes relacionados à API
+         database: testes que interagem com o banco de dados
+     ```
+
+7. **`filterwarnings`**  
+   - Configura como warnings devem ser exibidos.
+   - Exemplo:  
+     ```ini
+     filterwarnings =
+         ignore::DeprecationWarning
+         error::UserWarning
+     ```
+
+8. **Outras Configurações**  
+   - Plugins do `pytest` podem adicionar opções ao `pytest.ini`. Por exemplo, o `pytest-cov` adiciona configurações para cobertura de código:
+     ```ini
+     [pytest]
+     addopts = --cov=src --cov-report=html
+     ```
+
+---
+
+### **Vantagens do Arquivo `pytest.ini`**
+
+- **Centralização de Configurações**: Todas as opções padrão do `pytest` ficam definidas em um único lugar.
+- **Redução de Repetição**: Evita passar as mesmas opções repetidamente na linha de comando.
+- **Colaboração**: Outros desenvolvedores no projeto podem executar testes com as mesmas configurações.
+- **Organização**: Permite categorizar e organizar testes com marcadores (`markers`).
+
+---
+
+### **Alternativas ao `pytest.ini`**
+
+Além do `pytest.ini`, o `pytest` suporta outros arquivos de configuração, como:
+
+1. **`tox.ini`**: Geralmente usado em projetos que utilizam `tox`.
+2. **`pyproject.toml`**: Formato mais moderno, com suporte a várias ferramentas, incluindo o `pytest`.
+
+---
+
+O `pytest.ini` é uma ferramenta essencial para projetos que utilizam o `pytest`, ajudando a simplificar e padronizar a execução de testes, além de oferecer flexibilidade para lidar com configurações específicas do projeto.
+
+[Sumário](#sumário)
+
 # **Fixtures no Pytest**
 
 As fixtures no `pytest` são funções usadas para preparar e fornecer dados ou recursos para os testes. Elas são definidas com o decorador `@pytest.fixture` e podem ser usadas em vários testes.
